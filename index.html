@@ -4,66 +4,64 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesosme/4.7.0/css/font-awesome.min.css">
 <title>Functional Task Creation</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 <style>
-  
         /* Style for body and container */
         body {
             font-family: Arial, sans-serif;
             background-image: url(./BgBlue.jpg);
             background-size: cover;
-	        background-position: top center;
-            color:#ffffff;
+            background-position: top center;
         }
         .container {
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
             background-color: #ffffff;
+            color: #ffffff;
             background: transparent;
             backdrop-filter: blur(10px);
-            border-radius: 10px;
+            border-radius: 20px;
             display: center;
             Box-shadow: 0px 0px 18px 0 #0c9cfc;
         }
-        .button1{
-            background-color: #008CBA;
-            border:rgba(0, 0, 0, 0.1);
-            color: white;
-            padding: 15px 32px;
+        button{
+            padding: 10px 15px;
+            font-size: 20px;
             text-align: center;
-            text-decoration: dotted;
-            display: inline-block;
-            font-size: 16px;
             cursor: pointer;
-            padding: 20px;
-		    border-radius: 10px;
-	        margin: 30px;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            box-shadow: 0px 0px 18px 0 #2701ff;
-            transition: .3s ease box-shadow;
+            outline: none;
+            color: #fff;
+            background-color: transparent;
+            border: backdrop;
+            border-radius: 15px;
+            
+          
         }
-        .button1:hover{
-            box-shadow: 0px 0px 5px 0 #2701ff;
+        button:hover{
+                        
+            box-shadow: 0px 0px 20px 0 #0c9cfc;
+        }
+        button:active{
+            background-color: #2f00ff;
+            box-shadow: 0 5px #6d33f3;
+            transform: translateY(4px);
+        }
 
-        }
         .container:hover{
-            box-shadow: 0px 0px 5px 0 #0c9cfc; 
+            box-shadow: 0px 0px 5px 0 #0c9cfc;
         }
-        
-        
         /* ends here */
 </style>
 </head>
-
-<div class="container">   
-    <Center>     
-    <img src="AIGback.JPG" class="img-responsive" alt="AIGback" width="500" height="300">;
-    </Center>
-  </div>
+ 
+<div class="container">  
+<Center>    
+<img src="AIGback.JPG" class="img-responsive" alt="AIGback" width="500" height="300">;
+</Center>
+</div>
 <body>
 <div class="container">
 <div>
@@ -79,48 +77,69 @@
 </tr>
 <tr>
 <td>
-<input type="date" id="det" class="form-control">
+<input type="date" id="det" class="form-control" onchange="Descrip()">
 </td>
 <td>
-<input type="text" id="subj" class="form-control">
+<input type="text" id="subj" class="form-control" onkeypress="Descrip()">
 </td>
 </tr>
 </table>
+<div id="description"></div>
+<div id="descripCopy"></div>
 </center>
+<script>
+    function Descrip(){
+                    const deytinput = document.getElementById('det').value;
+                    const dateObj = new Date(deytinput)
+                    const formattedDate =
+                    dateObj.toLocaleDateString('en-US',{
+                        month: '2-digit',
+                        day: '2-digit',
+                        year: '2-digit'
+                    });
+                    var desSubj = document.getElementById('subj').value;
+                    document.getElementById("description").innerHTML = "<center>" + formattedDate + "|" + desSubj + "</center>";
+                    document.getElementById("descripCopy").innerHTML = "<button "+"onclick="+"InstantDescCopy()"+">Copy to clipboard</button>";
+}
+function InstantDescCopy(){
+        const textToCopy = document.getElementById("description").innerText;
+        copyToClipboard(textToCopy);
+    }
+</script>
 <fieldset class="border p-2">
 <legend class="float-none w-auto">Short Description</legend>
 <center>
 <table>
-    <tr align="center">
-        <td>
+<tr align="center">
+<td>
                                     Mailbox
-        </td>
-        <td>
+</td>
+<td>
                                     Region
-        </td>
-        <td>
+</td>
+<td>
                                     SLA
-        </td>
-        <td>
+</td>
+<td>
                                     Scope
-        </td>
-        <td>
-                                     Sender   
-        </td>
-        <td>
-                                     Shift   
-        </td>
-        </tr>
+</td>
+<td>
+                                     Sender  
+</td>
+<td>
+                                     Shift  
+</td>
+</tr>
 <tr>
 <td>
-<select id="SD1" class="form-control">
+<select id="SD1" class="form-control" onchange="SD()">
 <option value=""></option>
 <option value="GSD">GSD</option>
 <option value="CM">CM</option>
 </select>
 </td>
 <td>
-<select id="SD2" class="form-control">
+<select id="SD2" class="form-control" onchange="SD()">
 <option value=""></option>
 <option value="APAC">APAC</option>
 <option value="EMEA">EMEA</option>
@@ -128,7 +147,7 @@
 </select>
 </td>
 <td>
-<select id="SD3" class="form-control">
+<select id="SD3" class="form-control" onchange="SD()">
 <option value=""></option>
 <option value="BRCH">BRCH</option>
 <option value="NBRCH">NBRCH</option>
@@ -136,7 +155,7 @@
 </select>
 </td>
 <td>
-<select id="SD4" class="form-control">
+<select id="SD4" class="form-control" onchange="SD()">
 <option value=""></option>
 <option value="GSD">GSD</option>
 <option value="NGSD">NGSD</option>
@@ -144,10 +163,10 @@
 </select>
 </td>
 <td>
-<input type="text" id="sdText" class="form-control">
+<input type="text" id="sdText" class="form-control" onkeypress="SD()">
 </td>
 <td>
-<select id="SD5" class="form-control">
+<select id="SD5" class="form-control" onchange="SD()">
 <option value=""></option>
 <option value="APAC">APAC</option>
 <option value="EMEA">EMEA</option>
@@ -156,14 +175,46 @@
 </td>
 </tr>
 </table>
+<div id="SDesc"></div>
+<div id="Sclip"></div>
 </center>
 </fieldset>
+ 
+ 
+<script>
+    function SD(){
+                    var sub = document.getElementById('subj').value;
+                    var sd1 = document.getElementById('SD1').value;
+                    var sd2 = document.getElementById('SD2').value;
+                    var sd3 = document.getElementById('SD3').value;
+                    var sd4 = document.getElementById('SD4').value;
+                    var sdt = document.getElementById('sdText').value;
+                    var sd5 = document.getElementById('SD5').value;
+                    document.getElementById("SDesc").innerHTML = "<center>" + sd1 + "|" + sd2 + "|" + sd3 + "|" + sd4 + "|" + sdt + "|" + sd5 + "</center>";
+                    document.getElementById("Sclip").innerHTML = "<button "+"onclick="+"InstantCopy()"+">Copy to clipboard</button>";
+    }
+    function copyToClipboard(text) {
+        const tempElement = document.createElement('textarea');
+        tempElement.value = text;
+        tempElement.style.position = 'absolute';
+        tempElement.style.left = '-9999px';
+        tempElement.style.top = '-9999px';
+        document.body.appendChild(tempElement);
+        tempElement.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempElement);
+    }
+    function InstantCopy(){
+        const textToCopy = document.getElementById("SDesc").innerText;
+        copyToClipboard(textToCopy);
+    }
+</script>
 <fieldset class="border p-2">
 <legend class="float-none w-auto">CM Closure Notes</legend>
 <center>
 <select id="ClosureNotes" onchange="Arte()" class="form-control">
-<option value="">CM Closure Notes</option>
-<option value="1">Misrouted/mishandled|
+<option value=""></option>
+<option value="1">Misrouted/mishandled|<pre><</pre>Agent Name><pre><</pre>Assignment Group><pre><</pre>SST>| KB number or No KB</option>
 <option value="2">Outage|Tracking or Master Ticket</option>
 <option value="3">Critical Escalation- (Proceed with the analysis for Critical Escalation)</option>
 <option value="4">GSD out of scope|Issue</option>
@@ -172,7 +223,14 @@
 <div class = "input-group input-group-sm mb-3">
 <input type="text" id="CNotes" size="80" class="form-control">
 </div>
+<div id="CMClip"></div>
 </center>
+<script>
+        function InstantCMCopy(){
+        const textToCopy = document.getElementById("CNotes").value;
+        copyToClipboard(textToCopy);
+    }
+</script>
 </fieldset>
 <fieldset class="border p-2">
 <legend class="float-none w-auto">Escalation Closure Notes</legend>
@@ -194,7 +252,7 @@
 </tr>
 <tr>
 <td>
-<select id="category" onchange="UpdateReason()" class="form-control">
+<select id="category" onchange="UpdateReason()" onkeypress="test()" class="form-control">
 <option value=""></option>
 <option value="People">People</option>
 <option value="Process">Process</option>
@@ -206,7 +264,7 @@
 </select>
 </td>
 <td>
-<select id="FailPoint" class="form-control">
+<select id="FailPoint" class="form-control" onchange="test()">
 <option value=""></option>
 <option value="GSD">GSD</option>
 <option value="NGSD">NGSD</option>
@@ -214,10 +272,10 @@
 </select>
 </td>
 <td>
-<input type="text" id="Reso" class="form-control">
+<input type="text" id="Reso" class="form-control" onkeypress="test()">
 </td>
 <td>
-<input type="text" id="SubCat" class="form-control">
+<input type="text" id="SubCat" class="form-control" onkeypress="test()">
 </td>
 </tr>
 </table>
@@ -226,30 +284,48 @@
 <fieldset class="border p-2" >
 <legend class="float-none w-auto">Reason for Escalation</legend>
 <center>
-<select id="reason" class="form-control">
+<select id="reason" class="form-control" onchange="test()">
 <option value="0"></option>
 </select>
+<div id="EscaText"></div>
+<div id="EscaCopy"></div>
+<script>
+    function InstantEscaCopy(){
+        const textToCopy = document.getElementById("EscaText").innerText;
+        copyToClipboard(textToCopy);
+    }
+    function test(){
+            var cat = document.getElementById("category").value
+            var Fp = document.getElementById("FailPoint").value
+            var res = document.getElementById("Reso").value
+            var SCat = document.getElementById("SubCat").value
+            var reson = document.getElementById("reason").value
+                document.getElementById("EscaText").innerHTML = cat + "|" + Fp + "|" + res + "|" + SCat + "|" + reson;
+                document.getElementById("EscaCopy").innerHTML = "<button "+"onclick="+"InstantEscaCopy()"+">Copy to clipboard</button>";
+            }
+</script>
 </center>
 </fieldset>
 <fieldset class="border p-2">
 <legend class="float-none w-auto">Work in progress</legend>
 <center>
-<select id="InProg" class="form-control">
+<select id="InProg" class="form-control" onchange="prog()">
 <option value=""></option>
 <option value="Support Escalation Ongoing">Support Escalation Ongoing</option>
 <option value="Awaiting User Info">Awaiting User Info</option>
 <option value="Pending User Confirmation">Pending User Confirmation</option>
 </select>
+<script>
+    function prog(){
+        var ip = document.getElementById('InProg').value
+        document.getElementById('CNotes').value = ip;
+    }
+</script>
 </center>
 </fieldset>
-<div>
-<button class="button1" onclick="myFunction()"> Extract Notes </button>
-</div>
-<div id="dispTemp">
-<center> EXTRACTED NOTES GOES HERE </center>
-</div>
 <script>
     function Arte(){
+        document.getElementById("CMClip").innerHTML = "<button "+"onclick="+"InstantCMCopy()"+">Copy to clipboard</button>";
         const rason = document.getElementById("ClosureNotes");
         const rason2 = document.getElementById("CNotes");
         const SValue = rason.value;
@@ -304,33 +380,7 @@
                         reason1.options.add(new Option("General Query","General Query"));
                 }
             }
-                function myFunction(){
-                    const deytinput = document.getElementById('det').value;
-                    const dateObj = new Date(deytinput)
-                    const formattedDate =
-                    dateObj.toLocaleDateString('en-US',{
-                        month: '2-digit',
-                        day: '2-digit',
-                        year: '2-digit'
-                    });
-                    var sub = document.getElementById('subj').value;
-                    var sd1 = document.getElementById('SD1').value;
-                    var sd2 = document.getElementById('SD2').value;
-                    var sd3 = document.getElementById('SD3').value;
-                    var sd4 = document.getElementById('SD4').value;
-                    var sdt = document.getElementById('sdText').value;
-                    var sd5 = document.getElementById('SD5').value;
-                    var cn = document.getElementById('CNotes').value;
-                    var cat = document.getElementById('category').value
-                    var FP = document.getElementById('FailPoint').value
-                    var res = document.getElementById('Reso').value
-                    var sc = document.getElementById('SubCat').value
-                    var reasonval = document.getElementById('reason').value
-                    var ip = document.getElementById('InProg').value
-                    document.getElementById("dispTemp").innerHTML = "<br>Short Description: " + sd1 + "|" + sd2 + "|" + sd3 + "|" + sd4 + "|" + sdt + "|" + sd5 + "<br>Description: " + formattedDate + "|" + sub + "<br>Closure Notes: " + cn + ip + "<br>" + cat + "|" + FP + "|" + res + "|" + sc + "|" + reasonval;
-                    
-                }
-
+   
 </script>
 </div>
 </div>
