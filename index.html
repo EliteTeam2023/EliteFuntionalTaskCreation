@@ -40,6 +40,7 @@
             
           
         }
+       
         button:hover{
                         
             box-shadow: 0px 0px 20px 0 #0c9cfc;
@@ -69,18 +70,19 @@
 <table>
 <tr>
 <td>
-                        Date:
+                        Subject:
 </td>
 <td>
-                        Subject:
+                        Date:
 </td>
 </tr>
 <tr>
 <td>
-<input type="date" id="det" class="form-control" onchange="Descrip()">
+<input type="text" id="subj" class="form-control" onkeypress="Descrip()">
+
 </td>
 <td>
-<input type="text" id="subj" class="form-control" onkeypress="Descrip()">
+    <input type="date" id="det" class="form-control" onchange="Descrip()">
 </td>
 </tr>
 </table>
