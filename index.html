@@ -70,19 +70,18 @@
 <table>
 <tr>
 <td>
-                        Subject:
+                        Date:
 </td>
 <td>
-                        Date:
+                        Subject:
 </td>
 </tr>
 <tr>
 <td>
-<input type="text" id="subj" class="form-control" onkeypress="Descrip()">
-
+<input type="date" id="det" class="form-control" onchange="Descrip()">
 </td>
 <td>
-    <input type="date" id="det" class="form-control" onchange="Descrip()">
+<input type="text" id="subj" class="form-control" onchange="Descrip()"> 
 </td>
 </tr>
 </table>
@@ -102,6 +101,7 @@
                     var desSubj = document.getElementById('subj').value;
                     document.getElementById("description").innerHTML = "<center>" + formattedDate + "|" + desSubj + "</center>";
                     document.getElementById("descripCopy").innerHTML = "<button "+"onclick="+"InstantDescCopy()"+">Copy to clipboard</button>";
+                    
 }
 function InstantDescCopy(){
         const textToCopy = document.getElementById("description").innerText;
@@ -165,7 +165,7 @@ function InstantDescCopy(){
 </select>
 </td>
 <td>
-<input type="text" id="sdText" class="form-control" onkeypress="SD()">
+<input type="text" id="sdText" class="form-control" onchange="SD()">
 </td>
 <td>
 <select id="SD5" class="form-control" onchange="SD()">
