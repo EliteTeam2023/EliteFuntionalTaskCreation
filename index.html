@@ -263,6 +263,10 @@ function InstantDescCopy(){
 <option value="Expedite">Expedite</option>
 <option value="Invalid">Invalid</option>
 <option value="VIP">VIP</option>
+<option value="Support Escalation Ongoing">Support Escalation Ongoing</option>
+<option value="Awaiting User Info">Awaiting User Info</option>
+<option value="Pending User Confirmation">Pending User Confirmation</option>
+
 </select>
 </td>
 <td>
@@ -308,23 +312,7 @@ function InstantDescCopy(){
 </script>
 </center>
 </fieldset>
-<fieldset class="border p-2">
-<legend class="float-none w-auto">Work in progress</legend>
-<center>
-<select id="InProg" class="form-control" onchange="prog()">
-<option value=""></option>
-<option value="Support Escalation Ongoing">Support Escalation Ongoing</option>
-<option value="Awaiting User Info">Awaiting User Info</option>
-<option value="Pending User Confirmation">Pending User Confirmation</option>
-</select>
-<script>
-    function prog(){
-        var ip = document.getElementById('InProg').value
-        document.getElementById('CNotes').value = ip;
-    }
-</script>
-</center>
-</fieldset>
+
 <script>
     function Arte(){
         document.getElementById("CMClip").innerHTML = "<button "+"onclick="+"InstantCMCopy()"+">Copy to clipboard</button>";
@@ -380,6 +368,25 @@ function InstantDescCopy(){
                         reason1.options.add(new Option("Work stoppage","Work stoppage"));
                         reason1.options.add(new Option("User finds the SLA too long","User finds the SLA too long"));
                         reason1.options.add(new Option("General Query","General Query"));
+                    } else if (selectedValue === "Support Escalation Ongoing"){
+                        reason1.options.add(new Option("NA"));
+                    }else if (selectedValue === "Awaiting User Info"){
+                            reason1.options.add(new Option("NA"));
+                    }else if (selectedValue === "Pending User Confirmation"){
+                            reason1.options.add(new Option("NA"));
+                    
+                }
+            }
+            function sSTmo(){
+                const sstcat1 = document.getElementById("cSST");
+                const sst1 = document.getElementById("sst1");
+                const selectedValue = sstcat1.value;
+                    sst1.options.length = 0;
+                if (selectedValue === "SST"){
+                    sst1.options.add(new Option("Ticket closed prematurely","Ticket closed prematurely"));
+                }
+                else if (selectedValue === "Blind"){
+                 sst1.options.add(new Option("Work stoppage","Work stoppage"));
                 }
             }
    
