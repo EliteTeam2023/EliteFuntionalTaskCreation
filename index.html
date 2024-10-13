@@ -312,7 +312,58 @@ function InstantDescCopy(){
 </script>
 </center>
 </fieldset>
-
+<fieldset class="border p-2">
+    <legend class="float-none w-auto">Canned Self Service Ticket </legend>
+  
+    <select id="cSST1" class="form-control" onchange="SST()">
+    <option value="0"></option>
+    <option value=
+    "A Self Service Ticket has been assigned to you. Please contact the user within 24 hours and update your work notes.
+    <br>
+    <br>Reminder:
+    <br>Use the correct CI for the issue. If no CI is available, select Unavailable CI.
+    <br>&#9679; Do NOT change the channel type; keep it as Self-Service.
+    <br>&#9679; Check the Variables tab for an available callback number.
+    <br>&#9679; Reach out during the user's business hours after capturing BTTR.
+    <br>
+    <br>For more details on handling SST, see this article: KB0069783-Self-Service Ticket Handling - GSD Guide. Thank you.
+    "> SST Ticket for GSD</option>
+    <option value=
+    "Hi Team,
+    <br>
+    <br>Blind\cold Transfer not accepted. Please engage CaseManagement (AIGGS-CaseManagementTeam@aig.com) if you wish to move this ticket to GSD.
+    <br> 
+    <br>Thank you">Blind Transfer</option>
+    <option value=
+    "Blind\cold Transfer not accepted.
+    <br>
+    <br>3.2.4 Breached Ticket
+    <br>&#9679;In cases where the SLA of a ticket is about to be breached or has already been 
+    <br>breached while assigned to a queue, the ticket can be escalated functionally or 
+    <br>hierarchically to ensure that it is resolved at the earliest. A breached ticket should 
+    <br>not be canceled, nor a request made to the Global Service Desk to open a new ticket as a replacement.
+    <br>&#9679;Breached tickets should be prioritized and worked on without cancelling. Ticket
+    <br>assignee is prohibited to cancel and open a new ticket to replace the 'breached' ticket for the same matter.
+    <br>
+    <br>Please engage CaseManagement (AIGGS-CaseManagementTeam@aig.com) if you wish to move this ticket to GSD.
+    <br>Thank you">Breached Blind Transfer</option>
+    </select>
+    <div id="cSSTText"></div>
+    <div id="SSTCopy"></div>
+           
+    <script>
+        function SSTCopy(){
+            const textToCopy = document.getElementById("cSSTText").innerText;
+            copyToClipboard(textToCopy);
+        }
+        function SST(){
+                var SSTv = document.getElementById("cSST1").value
+                    document.getElementById("cSSTText").innerHTML = SSTv;
+                    document.getElementById("SSTCopy").innerHTML = "<button "+"onclick="+"SSTCopy()"+">Copy to clipboard</button>";
+                }
+    </script>
+       
+    </fieldset>
 <script>
     function Arte(){
         document.getElementById("CMClip").innerHTML = "<button "+"onclick="+"InstantCMCopy()"+">Copy to clipboard</button>";
@@ -377,18 +428,7 @@ function InstantDescCopy(){
                     
                 }
             }
-            function sSTmo(){
-                const sstcat1 = document.getElementById("cSST");
-                const sst1 = document.getElementById("sst1");
-                const selectedValue = sstcat1.value;
-                    sst1.options.length = 0;
-                if (selectedValue === "SST"){
-                    sst1.options.add(new Option("Ticket closed prematurely","Ticket closed prematurely"));
-                }
-                else if (selectedValue === "Blind"){
-                 sst1.options.add(new Option("Work stoppage","Work stoppage"));
-                }
-            }
+            
    
 </script>
 </div>
