@@ -313,41 +313,16 @@ function InstantDescCopy(){
 </center>
 </fieldset>
 <fieldset class="border p-2">
-    <legend class="float-none w-auto">Canned Self Service Ticket </legend>
-  
+    <legend class="float-none w-auto">Canned Self Service Ticket </legend> 
     <select id="cSST1" class="form-control" onchange="SST()">
-    <option value="0"></option>
-    <option value=
-    "A Self Service Ticket has been assigned to you. Please contact the user within 24 hours and update your work notes.
-    <br>
-    <br>Reminder:
-    <br>Use the correct CI for the issue. If no CI is available, select Unavailable CI.
-    <br>&#9679; Do NOT change the channel type; keep it as Self-Service.
-    <br>&#9679; Check the Variables tab for an available callback number.
-    <br>&#9679; Reach out during the user's business hours after capturing BTTR.
-    <br>
-    <br>For more details on handling SST, see this article: KB0069783-Self-Service Ticket Handling - GSD Guide. Thank you.
-    "> SST Ticket for GSD</option>
-    <option value=
-    "Hi Team,
-    <br>
-    <br>Blind\cold Transfer not accepted. Please engage CaseManagement (AIGGS-CaseManagementTeam@aig.com) if you wish to move this ticket to GSD.
-    <br> 
-    <br>Thank you">Blind Transfer</option>
-    <option value=
-    "Blind\cold Transfer not accepted.
-    <br>
-    <br>3.2.4 Breached Ticket
-    <br>&#9679;In cases where the SLA of a ticket is about to be breached or has already been 
-    <br>breached while assigned to a queue, the ticket can be escalated functionally or 
-    <br>hierarchically to ensure that it is resolved at the earliest. A breached ticket should 
-    <br>not be canceled, nor a request made to the Global Service Desk to open a new ticket as a replacement.
-    <br>&#9679;Breached tickets should be prioritized and worked on without cancelling. Ticket
-    <br>assignee is prohibited to cancel and open a new ticket to replace the 'breached' ticket for the same matter.
-    <br>
-    <br>Please engage CaseManagement (AIGGS-CaseManagementTeam@aig.com) if you wish to move this ticket to GSD.
-    <br>Thank you">Breached Blind Transfer</option>
-    </select>
+    <option value=""></option>
+    <option value="A Self Service Ticket has been assigned to you. Please contact the user within 24 hours and update your work notes.<br><br>Reminder:<br>Use the correct CI for the issue. If no CI is available, select Unavailable CI.<br>&#9679; Do NOT change the channel type; keep it as Self-Service.<br>&#9679; Check the Variables tab for an available callback number.<br>&#9679; Reach out during the user's business hours after capturing BTTR.<br><br>For more details on handling SST, see this article: KB0069783-Self-Service Ticket Handling - GSD Guide. Thank you."> SST Ticket for GSD</option>
+    <option value="Hi Team,<br><br>Blind\cold Transfer not accepted. Please engage CaseManagement (AIGGS-CaseManagementTeam@aig.com) if you wish to move this ticket to GSD.<br><br>Thank you">Blind Transfer</option>
+    <option value="Blind\cold Transfer not accepted.<br><br>3.2.4 Breached Ticket<br>&#9679;In cases where the SLA of a ticket is about to be breached or has already been <br>breached while assigned to a queue, the ticket can be escalated functionally or <br>hierarchically to ensure that it is resolved at the earliest. A breached ticket should <br>not be canceled, nor a request made to the Global Service Desk to open a new ticket as a replacement.<br>&#9679;Breached tickets should be prioritized and worked on without cancelling. Ticket<br>assignee is prohibited to cancel and open a new ticket to replace the 'breached' ticket for the same matter.<br><br>Please engage CaseManagement (AIGGS-CaseManagementTeam@aig.com) if you wish to move this ticket to GSD.<br>Thank you">Breached Blind Transfer</option>
+    <option value="Hi,<br><br>Re-opened ticket. Please follow up with user to understand why this was re-opened.<br><br>Thank You.">Re Opened Ticket</option>
+    <option value="Ticket was left unassigned in GSD queue">Ticket Left by GSD</option>
+</select>
+
     <div id="cSSTText"></div>
     <div id="SSTCopy"></div>
            
@@ -362,8 +337,37 @@ function InstantDescCopy(){
                     document.getElementById("SSTCopy").innerHTML = "<button "+"onclick="+"SSTCopy()"+">Copy to clipboard</button>";
                 }
     </script>
+      
+    <legend class="float-none w-auto">Back Log SST </legend>
+  
+    <select id="bSST1" class="form-control" onchange="bSST()">
+    <option value=""></option>
+    <option value="Treat as SST for EMEA.Ticket received during APAC hours.Thank you.">APAC to EMEA</option>
+    <option value="Treat as SST for AMER.Ticket received during APAC hours.Thank you.">APAC to AMER</option>
+    <option value="Treat as SST for APAC.Ticket received during EMEA hours.Thank you.">EMEA to APAC</option>
+    <option value="Treat as SST for AMER.Ticket received during EMEA hours.Thank you.">EMEA to AMER</option>
+    <option value="Treat as SST for APAC.Ticket received during AMER hours.Thank you.">AMER to APAC</option>
+    <option value="Treat as SST for EMEA.Ticket received during AMER hours.Thank you.">AMER to EMEA</option>
+    </select>
+
+    <div id="bSSTText"></div>
+    <div id="bSSTCopy"></div>
+           
+    <script>
+        function bSSTCopy(){
+            const textToCopy = document.getElementById("bSSTText").innerText;
+            copyToClipboard(textToCopy);
+        }
+        function bSST(){
+                var SSTb = document.getElementById("bSST1").value
+                    document.getElementById("bSSTText").innerHTML = SSTb;
+                    document.getElementById("bSSTCopy").innerHTML = "<button "+"onclick="+"bSSTCopy()"+">Copy to clipboard</button>";
+                }
+    </script>
+
        
-    </fieldset>
+    
+</fieldset>
 <script>
     function Arte(){
         document.getElementById("CMClip").innerHTML = "<button "+"onclick="+"InstantCMCopy()"+">Copy to clipboard</button>";
